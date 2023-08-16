@@ -1,24 +1,27 @@
-
 package com.egg.News.entidades;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Noticia {
-    
+
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     private String titulo;
     private String cuerpo;
-    
+
+    @OneToOne
+    private Imagen imagen;
+
     @Temporal(TemporalType.DATE)
     private Date fecha;
 
@@ -49,6 +52,14 @@ public class Noticia {
         this.cuerpo = cuerpo;
     }
 
+    public Imagen getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(Imagen imagen) {
+        this.imagen = imagen;
+    }
+
     public Date getFecha() {
         return fecha;
     }
@@ -57,6 +68,4 @@ public class Noticia {
         this.fecha = fecha;
     }
 
-    
-    
 }

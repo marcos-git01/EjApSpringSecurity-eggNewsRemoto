@@ -53,6 +53,7 @@
                         <th scope="col">Id</th>
                         <th scope="col">Titulo</th>
                         <th scope="col">Cuerpo</th>
+                        <th scope="col">Foto de la Noticia</th>
                         <th scope="col">Fecha publicación</th>
                         <th scope="col" sec:authorize="hasRole('ADMIN')" >Acciones</th>
                         <th scope="col" sec:authorize="hasRole('ADMIN')" >Acciones</th>
@@ -64,6 +65,11 @@
                         <th scope="row" th:text="${noticia.id}"></th>
                         <td th:text="${noticia.titulo}"></td>
                         <td th:text="${noticia.cuerpo}"></td>
+                        
+                        <td 
+                            <a><img th:if="${noticia.imagen != null}" class="logo" th:src="@{/imagen/perfil/__${noticia.id}__}" ></a>
+                        </td>
+                        
                         <td th:text="${noticia.fecha}"></td>
                         <td>
                             <a sec:authorize="hasRole('ADMIN')" th:href= "@{/noticia/modificar/__${noticia.id}__}"><i class="fas fa-feather-alt"></i> Modificar </a>

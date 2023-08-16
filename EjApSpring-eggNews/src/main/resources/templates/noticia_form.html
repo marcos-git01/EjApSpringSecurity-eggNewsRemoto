@@ -58,7 +58,7 @@
                 </div>
             </div>
             
-            <form class="formulario" action="/noticia/registro" method="POST">
+            <form class="formulario" action="/noticia/registro" method="POST" enctype="multipart/form-data">
  
                 <div class="form-group my-3">
                     <h2>Cargar Noticia</h2>
@@ -68,7 +68,10 @@
                     <textarea class="form-control" id="cuerpo" name="cuerpo" rows="3" placeholder="Cuerpo de la Noticia"></textarea>
                 </div>
                 
-                
+                <div class="form-group my-3">
+                    <input type="file" class="form-control" name="archivo" >
+                </div>
+                              
                 <button type="submit" class="btn btn-primary mt-3 botones">Guardar</button>                
             </form>
 
