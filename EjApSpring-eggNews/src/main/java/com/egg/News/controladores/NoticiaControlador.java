@@ -67,10 +67,10 @@ public class NoticiaControlador {
     
     
     @PostMapping("/modificar/{id}")
-    public String modificar(@PathVariable String id, String titulo, String cuerpo, ModelMap modelo) {
+    public String modificar(@RequestParam MultipartFile archivo, @PathVariable String id, @RequestParam String titulo, @RequestParam String cuerpo, ModelMap modelo) {
         
         try {
-            noticiaServicio.modificarNoticia(id, titulo, cuerpo);
+            noticiaServicio.modificarNoticia(archivo, id, titulo, cuerpo);
             
             //Ver esta linea si funciona? No funciona porque redirecciona a lista
             modelo.put("exito", "La noticia fue modificada correctamente!");

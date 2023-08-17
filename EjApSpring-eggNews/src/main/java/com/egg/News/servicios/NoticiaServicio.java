@@ -18,7 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class NoticiaServicio {
     
     @Autowired
-    NoticiaRepositorio noticiaRepositorio;
+    private NoticiaRepositorio noticiaRepositorio;
     
     @Autowired
     private ImagenServicio imagenServicio;
@@ -53,7 +53,7 @@ public class NoticiaServicio {
     }
     
     @Transactional
-    public void modificarNoticia(String id, String titulo, String cuerpo) throws MiException {
+    public void modificarNoticia(MultipartFile archivo, String id, String titulo, String cuerpo) throws MiException {
         
         if (id.isEmpty() || id == null) {
             throw new MiException("El Id de la Noticia no puede ser nulo o estar vacio");
@@ -69,6 +69,16 @@ public class NoticiaServicio {
             
             noticia.setTitulo(titulo);
             noticia.setCuerpo(cuerpo);
+            
+            String idImagen = null;
+
+            if (noticia.getImagen() != null) {
+                idImagen = noticia.getImagen().getId();
+            }
+
+            Imagen imagen = imagenServicio.actualizar(archivo, idImagen);
+
+            noticia.setImagen(imagen);
             
             noticiaRepositorio.save(noticia);
 
