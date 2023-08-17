@@ -6,6 +6,7 @@ import com.egg.News.excepciones.MiException;
 import com.egg.News.servicios.NoticiaServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,7 @@ public class NoticiaControlador {
     @Autowired
     private NoticiaServicio noticiaServicio;
     
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/registrar") //localhost:8080/noticia/registrar
     public String registrar(){
         return "noticia_form.html";
@@ -44,6 +46,7 @@ public class NoticiaControlador {
         //return "index.html"; 
     }
     
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/lista") //localhost:8080/noticia/lista
     public String listar(ModelMap modelo){
         

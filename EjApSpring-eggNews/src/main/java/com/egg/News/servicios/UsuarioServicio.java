@@ -81,11 +81,11 @@ public class UsuarioServicio implements UserDetailsService{
 
             permisos.add(p);
 
-            /*ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+            ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 
             HttpSession session = attr.getRequest().getSession(true);
 
-            session.setAttribute("usuariosession", usuario);*/
+            session.setAttribute("usuariosession", usuario);
 
             return new User(usuario.getNombre(), usuario.getPassword(), permisos);
         } else {

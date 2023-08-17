@@ -30,9 +30,23 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
-                    
+                    .antMatchers("/admin/*").hasRole("ADMIN")
                     .antMatchers("/css/*", "/js/*", "/img/*", "/**")
-                    .permitAll();
-                }
+                    .permitAll()
+                .and().formLogin()
+                    .loginPage("/login")
+                    .loginProcessingUrl("/logincheck")
+                    .usernameParameter("nombre")
+                    .passwordParameter("password")
+                    .defaultSuccessUrl("/inicio")
+                    .permitAll()
+                .and().logout()
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("/") //logoutSuccessUrl("/") con la / retorna al index
+                    .permitAll()
+                .and().csrf()
+                    .disable();
+
+    }
     
 }
