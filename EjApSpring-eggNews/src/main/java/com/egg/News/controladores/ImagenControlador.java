@@ -1,4 +1,3 @@
-
 package com.egg.News.controladores;
 
 import com.egg.News.entidades.Noticia;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/imagen")
 public class ImagenControlador {
-    
+
     @Autowired
     private NoticiaServicio noticiaServicio;
 
@@ -32,5 +31,5 @@ public class ImagenControlador {
 
         return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
     }
-    
+
 }

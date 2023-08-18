@@ -30,7 +30,7 @@ public class NoticiaControlador {
     }
     
     @PostMapping("/registro")
-    public String registro(@RequestParam String titulo, @RequestParam String cuerpo, ModelMap modelo, MultipartFile archivo) {
+    public String registro(@RequestParam String titulo, @RequestParam String cuerpo, ModelMap modelo, @RequestParam MultipartFile archivo) {
         
         try {
             noticiaServicio.crearNoticia(archivo, titulo, cuerpo);
