@@ -65,19 +65,21 @@
         
         <br>
 
-        <section>
+        <!--<section>
             <div class="card w-50 mb-3 mx-auto">
-                <!--<img src="..." class="card-img-top" alt="imagen-noticia"> VER ESTA LINEA-->
+                
                 <div class="card-body" th:each="noticia : ${noticias}">
+                    
                     <h5 class="card-title" th:text="${noticia.titulo}"></h5>
-                    <!--<p class="card-text" th:text="${noticia.cuerpo}"></p>-->
+                    <img th:src="@{/imagen/perfil/__${noticia.id}__}" class="card-img-top" alt="imagen-noticia">
+                    
                     <p class="card-text" th:text="${noticia.fecha}"></p>
                     <a th:href= "@{/noticia/mostrar/__${noticia.id}__}" class="btn btn-primary">Ir a la Noticia</a>
                     <hr>
                 </div>
             </div>
 
-        </section>
+        </section>-->
         
                    
         <footer class="text-muted py-5">
