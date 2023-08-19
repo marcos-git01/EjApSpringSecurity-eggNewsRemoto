@@ -125,6 +125,24 @@ public class UsuarioServicio implements UserDetailsService{
         }
     }
     
+    @Transactional
+    public void cambiarActivo(String id) {
+        Optional<Usuario> respuesta = usuarioRepositorio.findById(id);
+
+        if (respuesta.isPresent()) {
+
+            Usuario usuario = respuesta.get();
+
+            if (usuario.getActivo().equals(Boolean.TRUE)) {
+
+                usuario.setActivo(Boolean.FALSE);
+
+            } else if (usuario.getActivo().equals(Boolean.FALSE)) {
+                usuario.setActivo(Boolean.TRUE);
+            }
+        }
+    }
+    
     
     private void validar(String nombre, String password, String password2) throws MiException {
 

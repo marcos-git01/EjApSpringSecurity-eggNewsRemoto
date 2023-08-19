@@ -51,6 +51,13 @@ public class AdminControlador {
         return "redirect:/admin/usuarios";
     }
     
+    @GetMapping("/modificarActivo/{id}")
+    public String cambiarActivo(@PathVariable String id) {
+        usuarioServicio.cambiarActivo(id);
+
+        return "redirect:/admin/usuarios";
+    }
+    
     
     @GetMapping("/modificar/{id}") 
     public String modificar(@PathVariable String id, ModelMap modelo) {

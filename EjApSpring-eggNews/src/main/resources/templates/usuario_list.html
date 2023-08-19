@@ -17,6 +17,10 @@
                         
                         <th scope="col">Rol</th>
                         <th scope="col">Cambiar Rol</th>
+                        
+                        <th scope="col">Activo</th>
+                        <th scope="col">Cambiar Activo</th>
+                        
                         <th scope="col">Modificar</th>
                         <th scope="col">Eliminar</th>
 
@@ -31,6 +35,12 @@
 
                         <td>
                             <a th:href= "@{/admin/modificarRol/__${usuario.id}__}"><i class="fas fa-feather-alt"></i> Cambiar</a>
+                        </td>
+                        
+                        <td th:text="${usuario.activo}"></td>
+
+                        <td>
+                            <a th:href= "@{/admin/modificarActivo/__${usuario.id}__}"><i class="fas fa-feather-alt"></i> Cambiar</a>
                         </td>
 
                         <td>
