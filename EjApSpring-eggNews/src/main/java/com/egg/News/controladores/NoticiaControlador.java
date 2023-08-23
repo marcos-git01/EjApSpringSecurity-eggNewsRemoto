@@ -2,8 +2,10 @@
 package com.egg.News.controladores;
 
 import com.egg.News.entidades.Noticia;
+import com.egg.News.entidades.Periodista;
 import com.egg.News.excepciones.MiException;
 import com.egg.News.servicios.NoticiaServicio;
+import com.egg.News.servicios.PeriodistaServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -23,17 +25,25 @@ public class NoticiaControlador {
     @Autowired
     private NoticiaServicio noticiaServicio;
     
+    @Autowired
+    private PeriodistaServicio periodistaServicio;
+    
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_PERIODISTA')")
     @GetMapping("/registrar") //localhost:8080/noticia/registrar
-    public String registrar(){
+    public String registrar(ModelMap modelo){
+        
+        List<Periodista> periodistas = periodistaServicio.listarPeriodista();
+       
+        modelo.addAttribute("periodistas", periodistas);
+        
         return "noticia_form.html";
     }
     
     @PostMapping("/registro")
-    public String registro(@RequestParam String titulo, @RequestParam String cuerpo, ModelMap modelo, @RequestParam MultipartFile archivo) {
+    public String registro(@RequestParam String titulo, @RequestParam String cuerpo, ModelMap modelo, @RequestParam MultipartFile archivo, @RequestParam String idPeriodista) {
         
         try {
-            noticiaServicio.crearNoticia(archivo, titulo, cuerpo);
+            noticiaServicio.crearNoticia(archivo, titulo, cuerpo, idPeriodista);
             
             modelo.put("exito", "La Noticia fue registrada correctamente!");
         } catch (MiException ex) {

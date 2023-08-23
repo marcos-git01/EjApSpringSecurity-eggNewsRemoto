@@ -36,6 +36,19 @@
                 <div class="form-group my-3">
                     <input type="file" class="form-control" name="archivo" >
                 </div>
+                
+                <div class="form-group my-3">
+
+                    <select name="idPeriodista">
+
+                        <option>Seleccionar Periodista</option>
+
+                        <option th:each="periodista : ${periodistas}"
+                                th:value="${periodista.id}"
+                                th:text="${periodista.nombre}"
+                                />
+                    </select>
+                </div>
                               
                 <button type="submit" class="btn btn-primary mt-3 botones">Guardar</button>                
             </form>

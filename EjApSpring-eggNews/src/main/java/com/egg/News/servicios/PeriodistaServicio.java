@@ -79,6 +79,16 @@ public class PeriodistaServicio implements UserDetailsService{
 
     }
     
+    public List<Periodista> listarPeriodista() {
+
+        List<Periodista> periodistas = new ArrayList();
+
+        periodistas = periodistaRepositorio.findAll();
+
+        return periodistas;
+
+    }
+    
     
     private void validar(String nombre, String password, String password2) throws MiException {
 

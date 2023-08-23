@@ -71,14 +71,13 @@ public class Noticia {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
-    
-    /*
+
     public Periodista getCreador() {
         return creador;
     }
 
     public void setCreador(Periodista creador) {
         this.creador = creador;
-    }*/
-
+    }
+        
 }

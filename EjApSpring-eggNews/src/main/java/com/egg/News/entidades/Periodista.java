@@ -2,9 +2,7 @@ package com.egg.News.entidades;
 
 import com.egg.News.enumeraciones.Rol;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Periodista extends Usuario {
@@ -19,7 +17,7 @@ public class Periodista extends Usuario {
         this.sueldoMensual = sueldoMensual;
     }
 
-       
+    
     public Integer getSueldoMensual() {
         return sueldoMensual;
     }
@@ -27,5 +25,5 @@ public class Periodista extends Usuario {
     public void setSueldoMensual(Integer sueldoMensual) {
         this.sueldoMensual = sueldoMensual;
     }
-
+  
 }

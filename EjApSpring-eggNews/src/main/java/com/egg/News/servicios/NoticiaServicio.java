@@ -3,8 +3,10 @@ package com.egg.News.servicios;
 
 import com.egg.News.entidades.Imagen;
 import com.egg.News.entidades.Noticia;
+import com.egg.News.entidades.Periodista;
 import com.egg.News.excepciones.MiException;
 import com.egg.News.repositorios.NoticiaRepositorio;
+import com.egg.News.repositorios.PeriodistaRepositorio;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,12 +23,17 @@ public class NoticiaServicio {
     private NoticiaRepositorio noticiaRepositorio;
     
     @Autowired
+    private PeriodistaRepositorio periodistaRepositorio;
+    
+    @Autowired
     private ImagenServicio imagenServicio;
     
     @Transactional
-    public void crearNoticia(MultipartFile archivo, String titulo, String cuerpo) throws MiException {
+    public void crearNoticia(MultipartFile archivo, String titulo, String cuerpo, String idPeriodista) throws MiException {
         
         validar(titulo, cuerpo);
+        
+        Periodista periodista = periodistaRepositorio.findById(idPeriodista).get();
         
         Noticia noticia = new Noticia();
         
@@ -37,6 +44,8 @@ public class NoticiaServicio {
         Imagen imagen = imagenServicio.guardar(archivo);
 
         noticia.setImagen(imagen);
+        
+        noticia.setCreador(periodista);
         
         noticiaRepositorio.save(noticia);
         
