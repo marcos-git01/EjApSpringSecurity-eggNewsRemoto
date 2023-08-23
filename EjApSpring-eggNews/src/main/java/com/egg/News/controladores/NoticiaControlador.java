@@ -23,7 +23,7 @@ public class NoticiaControlador {
     @Autowired
     private NoticiaServicio noticiaServicio;
     
-    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_PERIODISTA')")
     @GetMapping("/registrar") //localhost:8080/noticia/registrar
     public String registrar(){
         return "noticia_form.html";
@@ -46,7 +46,7 @@ public class NoticiaControlador {
         //return "index.html"; 
     }
     
-    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_PERIODISTA')")
     @GetMapping("/lista") //localhost:8080/noticia/lista
     public String listar(ModelMap modelo){
         
