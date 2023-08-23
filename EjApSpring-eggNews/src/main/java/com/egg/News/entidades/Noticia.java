@@ -4,6 +4,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,6 +25,9 @@ public class Noticia {
 
     @Temporal(TemporalType.DATE)
     private Date fecha;
+       
+    @ManyToOne
+    private Periodista creador;
 
     public Noticia() {
     }
@@ -67,5 +71,14 @@ public class Noticia {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+    
+    /*
+    public Periodista getCreador() {
+        return creador;
+    }
+
+    public void setCreador(Periodista creador) {
+        this.creador = creador;
+    }*/
 
 }

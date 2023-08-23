@@ -4,6 +4,7 @@ import com.egg.News.entidades.Noticia;
 import com.egg.News.entidades.Usuario;
 import com.egg.News.excepciones.MiException;
 import com.egg.News.servicios.NoticiaServicio;
+import com.egg.News.servicios.PeriodistaServicio;
 import com.egg.News.servicios.UsuarioServicio;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -27,6 +28,9 @@ public class PortalControlador {
 
     @Autowired
     private UsuarioServicio usuarioServicio;
+    
+    @Autowired
+    private PeriodistaServicio periodistaServicio;
 
     /*
     @GetMapping("/")
@@ -49,14 +53,24 @@ public class PortalControlador {
     }
 
     @PostMapping("/registro")
-    public String registro(@RequestParam String nombre, @RequestParam String password,
+    public String registro(@RequestParam String nombre, @RequestParam String rol, @RequestParam String password,
             String password2, ModelMap modelo) {
 
         try {
-            usuarioServicio.registrar(nombre, password, password2);
 
-            modelo.put("exito", "Usuario registrado correctamente!");
-
+            if (rol.equals("USER")) {
+                
+                usuarioServicio.registrar(nombre, password, password2);
+                
+                modelo.put("exito", "Usuario registrado correctamente!");
+                
+            } else if (rol.equals("PERIODISTA")) {
+                
+                periodistaServicio.registrar(nombre, password, password2);
+                
+                modelo.put("exito", "Periodista registrado correctamente!");
+            }
+ 
             //return "index.html"; //retornando al index no muestra el mensaje de exito
             return "registro.html";
         } catch (MiException ex) {

@@ -1,4 +1,3 @@
-
 package com.egg.News.entidades;
 
 import com.egg.News.enumeraciones.Rol;
@@ -8,30 +7,41 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
+@Inheritance
 public class Usuario {
-    
+
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
+    protected String id;
 
-    private String nombre;    
-    private String password;
-    
+    protected String nombre;
+    protected String password;
+
     @Temporal(TemporalType.DATE)
-    private Date fecha;
+    protected Date fecha;
 
     @Enumerated(EnumType.STRING)
-    private Rol rol;
-    
-    private Boolean activo;
+    protected Rol rol;
+
+    protected Boolean activo;
 
     public Usuario() {
+    }
+
+    public Usuario(String id, String nombre, String password, Date fecha, Rol rol, Boolean activo) {
+        this.id = id;
+        this.nombre = nombre;
+        this.password = password;
+        this.fecha = fecha;
+        this.rol = rol;
+        this.activo = activo;
     }
 
     public String getId() {
@@ -81,7 +91,5 @@ public class Usuario {
     public void setActivo(Boolean activo) {
         this.activo = activo;
     }
-    
-    
-    
+
 }

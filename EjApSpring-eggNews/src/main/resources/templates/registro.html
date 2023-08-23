@@ -32,6 +32,22 @@
                     <input type="text" class="form-control" name="nombre" placeholder="NOMBRE" th:value="${nombre}">
                 </div>
                 
+                <div class="form-group my-3">
+
+                    <select name="rol">
+
+                        <option>Seleccionar Rol</option>
+
+                        <!--<option th:each="autor : ${autores}"
+                                th:value="${autor.id}"
+                                th:text="${autor.nombre}"
+                                />-->
+                        <option value="USER">Usuario</option>
+                        <option value="PERIODISTA">Periodista</option>
+                                                
+                    </select>
+                </div>
+                
 
                 <div class="form-group my-3">
                     <input type="password" class="form-control" name="password" placeholder="CONTRASEÑA" th:value="${password}">
