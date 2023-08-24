@@ -19,7 +19,7 @@
                     <li><a class="dropdown-item" sec:authorize="hasRole('ADMIN') or hasRole('PERIODISTA')" th:href="@{/noticia/registrar}">Crear Noticia</a></li>
                     <li><hr class="dropdown-divider"></li>
 
-                    <li><a class="dropdown-item" sec:authorize="hasRole('ADMIN')" th:href="@{/noticia/lista}">Listar noticias</a></li>
+                    <li><a class="dropdown-item" sec:authorize="hasRole('ADMIN') or hasRole('USER')" th:href="@{/noticia/lista}">Listar noticias</a></li>
                     <li><a class="dropdown-item" sec:authorize="hasRole('PERIODISTA')" th:href="@{/noticia/lista/__{session.usuariosession.creador.id}_-}">Listar noticias</a></li>
                 </ul>
             </li>

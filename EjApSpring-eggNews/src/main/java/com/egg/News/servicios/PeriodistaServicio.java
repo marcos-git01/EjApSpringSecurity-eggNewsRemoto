@@ -89,6 +89,10 @@ public class PeriodistaServicio implements UserDetailsService{
 
     }
     
+    public Periodista getOne(String id) {
+        return periodistaRepositorio.getOne(id);
+    }
+    
     
     private void validar(String nombre, String password, String password2) throws MiException {
 
