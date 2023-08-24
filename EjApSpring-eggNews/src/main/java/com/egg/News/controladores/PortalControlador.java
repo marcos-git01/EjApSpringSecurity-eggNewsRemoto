@@ -103,7 +103,16 @@ public class PortalControlador {
             return "redirect:/admin/dashboard";
         }
 
-        List<Noticia> noticias = noticiaServicio.listarNoticias();
+        if (logueado.getRol().toString().equals("USER")) {
+
+            List<Noticia> noticias = noticiaServicio.listarNoticias();
+
+            modelo.addAttribute("noticias", noticias);
+
+            return "inicio.html";
+        }
+
+        List<Noticia> noticias = noticiaServicio.listarNoticiasPorPeriodista(logueado.getId());
 
         modelo.addAttribute("noticias", noticias);
 

@@ -61,6 +61,16 @@ public class NoticiaServicio {
         
     }
     
+    public List<Noticia> listarNoticiasPorPeriodista(String idPeriodista) {
+        
+        List<Noticia> noticias = new ArrayList();
+        
+        noticias = noticiaRepositorio.buscarPorPeriodista(idPeriodista);
+        
+        return noticias;
+        
+    }
+    
     @Transactional
     public void modificarNoticia(MultipartFile archivo, String id, String titulo, String cuerpo) throws MiException {
         

@@ -3,10 +3,12 @@ package com.egg.News.controladores;
 
 import com.egg.News.entidades.Noticia;
 import com.egg.News.entidades.Periodista;
+import com.egg.News.entidades.Usuario;
 import com.egg.News.excepciones.MiException;
 import com.egg.News.servicios.NoticiaServicio;
 import com.egg.News.servicios.PeriodistaServicio;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -61,6 +63,19 @@ public class NoticiaControlador {
     public String listar(ModelMap modelo){
         
         List<Noticia> noticias = noticiaServicio.listarNoticias();
+        
+        modelo.addAttribute("noticias", noticias);
+        
+        return "noticia_list.html";
+    }
+    
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN', 'ROLE_PERIODISTA')")
+    @GetMapping("/lista/{id}") //localhost:8080/noticia/lista
+    public String listarPorPeriodista(HttpSession session, ModelMap modelo){
+        
+        Usuario logueado = (Usuario) session.getAttribute("usuariosession");
+        
+        List<Noticia> noticias = noticiaServicio.listarNoticiasPorPeriodista(logueado.getId());
         
         modelo.addAttribute("noticias", noticias);
         
