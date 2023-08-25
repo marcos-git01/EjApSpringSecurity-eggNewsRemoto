@@ -2,9 +2,11 @@
 package com.egg.News.controladores;
 
 import com.egg.News.entidades.Noticia;
+import com.egg.News.entidades.Periodista;
 import com.egg.News.entidades.Usuario;
 import com.egg.News.excepciones.MiException;
 import com.egg.News.servicios.NoticiaServicio;
+import com.egg.News.servicios.PeriodistaServicio;
 import com.egg.News.servicios.UsuarioServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class AdminControlador {
     
     @Autowired
     private UsuarioServicio usuarioServicio;
+    
+    @Autowired
+    private PeriodistaServicio periodistaServicio;
 
     @GetMapping("/dashboard")
     public String panelAdministrativo(ModelMap modelo) {
@@ -44,6 +49,14 @@ public class AdminControlador {
         return "usuario_list.html";
     }
     
+    @GetMapping("/periodistas")
+    public String listarPeriodistas(ModelMap modelo) {
+        List<Periodista> periodistas = periodistaServicio.listarPeriodista();
+        modelo.addAttribute("periodistas", periodistas);
+
+        return "periodista_list.html";
+    }
+       
     @GetMapping("/modificarRol/{id}")
     public String cambiarRol(@PathVariable String id) {
         usuarioServicio.cambiarRol(id);
@@ -83,6 +96,34 @@ public class AdminControlador {
             modelo.put("error", ex.getMessage());
 
             return "usuario_modificar.html";
+        }
+
+    }
+    
+    @GetMapping("/modificarSueldo/{id}") 
+    public String modificarSueldo(@PathVariable String id, ModelMap modelo) {
+
+        modelo.put("periodista", periodistaServicio.getOne(id));
+
+        return "periodista_modificar.html";
+    }
+
+    @PostMapping("/modificarSueldo/{id}")
+    public String modificarSueldo(@PathVariable String id, String nombre, Integer sueldoMensual, ModelMap modelo) {
+
+        try {
+            periodistaServicio.modificarSueldo(id, nombre, sueldoMensual);
+
+            //Ver esta linea si funciona?
+            modelo.put("exito", "El periodista fue modificado correctamente!");
+
+            return "redirect:/admin/periodistas";
+
+        } catch (MiException ex) {
+
+            modelo.put("error", ex.getMessage());
+
+            return "periodista_modificar.html";
         }
 
     }

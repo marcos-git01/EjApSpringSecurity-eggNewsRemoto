@@ -15,42 +15,22 @@
                         <th scope="col">Id del Usuario</th>
                         <th scope="col">Nombre</th>
                         
-                        <th scope="col">Rol</th>
-                        <th scope="col">Cambiar Rol</th>
-                        
-                        <th scope="col">Activo</th>
-                        <th scope="col">Cambiar Activo</th>
-                                                
-                        <th scope="col">Modificar</th>
-                        <th scope="col">Eliminar</th>
+                        <th scope="col">Sueldo</th>
+                        <th scope="col">Cambiar Sueldo</th>
 
                     </tr>
                 </thead>
-                <tbody th:each="usuario : ${usuarios}"> 
+                <tbody th:each="periodista : ${periodistas}"> 
                     <tr>
-                        <th scope="row" th:text="${usuario.id}"></th>
-                        <td th:text="${usuario.nombre}"></td>
+                        <th scope="row" th:text="${periodista.id}"></th>
+                        <td th:text="${periodista.nombre}"></td>
                                               
-                        <td th:text="${usuario.rol}"></td>
-
+                        <td th:text="${periodista.sueldoMensual}"></td>
+                                                                       
                         <td>
-                            <a th:href= "@{/admin/modificarRol/__${usuario.id}__}"><i class="fas fa-feather-alt"></i> Cambiar</a>
+                            <a th:href= "@{/admin/modificarSueldo/__${periodista.id}__}"><i class="fas fa-feather-alt"></i> Modificar</a>
                         </td>
-                        
-                        <td th:text="${usuario.activo}"></td>
-
-                        <td>
-                            <a th:href= "@{/admin/modificarActivo/__${usuario.id}__}"><i class="fas fa-feather-alt"></i> Cambiar</a>
-                        </td>
-                        
-                        <td>
-                            <a th:href= "@{/admin/modificar/__${usuario.id}__}"><i class="fas fa-feather-alt"></i> Modificar</a>
-                        </td>
-                        
-                        <td>
-                            <a th:href= "@{/admin/eliminar/__${usuario.id}__}"><i class="fas fa-feather-alt"></i> Eliminar</a>
-                        </td>
-
+                                              
                     </tr>
 
                 </tbody>

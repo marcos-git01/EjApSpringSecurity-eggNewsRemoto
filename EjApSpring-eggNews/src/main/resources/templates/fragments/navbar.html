@@ -20,7 +20,7 @@
                     <li><hr class="dropdown-divider"></li>
 
                     <li><a class="dropdown-item" sec:authorize="hasRole('ADMIN') or hasRole('USER')" th:href="@{/noticia/lista}">Listar noticias</a></li>
-                    <li><a class="dropdown-item" sec:authorize="hasRole('PERIODISTA')" th:href="@{/noticia/lista/__{session.usuariosession.creador.id}_-}">Listar noticias</a></li>
+                    <li><a class="dropdown-item" sec:authorize="hasRole('PERIODISTA')" th:href="@{/noticia/lista/__${session.usuariosession.id}__}">Listar noticias</a></li>
                 </ul>
             </li>
 
@@ -32,7 +32,9 @@
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
                     <li><a class="dropdown-item"  th:href="@{/admin/usuarios}">Listar Usuarios</a></li>
-                </ul>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item"  th:href="@{/admin/periodistas}">Sueldos Periodistas</a></li>
+                </ul>        
             </li>
 
 

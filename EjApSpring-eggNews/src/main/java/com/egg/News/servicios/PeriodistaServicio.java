@@ -51,6 +51,8 @@ public class PeriodistaServicio implements UserDetailsService{
         
         periodista.setActivo(Boolean.TRUE);
         
+        periodista.setSueldoMensual(1000);
+        
         periodistaRepositorio.save(periodista);
     }
     
@@ -73,6 +75,34 @@ public class PeriodistaServicio implements UserDetailsService{
             periodista.setFecha(periodista.getFecha());
         
             periodista.setActivo(periodista.getActivo());
+            
+            periodista.setSueldoMensual(periodista.getSueldoMensual());
+            
+            periodistaRepositorio.save(periodista);
+        }
+
+    }
+    
+    @Transactional
+    public void modificarSueldo(String idPeriodista, String nombre, Integer sueldoMensual) throws MiException {
+
+        
+        Optional<Periodista> respuesta = periodistaRepositorio.findById(idPeriodista);
+        if (respuesta.isPresent()) {
+
+            Periodista periodista = respuesta.get();
+            
+            periodista.setNombre(nombre);
+            
+            //periodista.setPassword(new BCryptPasswordEncoder().encode(password));
+
+            //periodista.setRol(periodista.getRol());
+            
+            //periodista.setFecha(periodista.getFecha());
+        
+            //periodista.setActivo(periodista.getActivo());
+            
+            periodista.setSueldoMensual(sueldoMensual);
             
             periodistaRepositorio.save(periodista);
         }
